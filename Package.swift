@@ -12,12 +12,10 @@ let package = Package(
         .target(
             name: "libsonic",
             exclude: ["_repo"],
-            sources: ["src"],  // Adjust path as needed
             cSettings: []
         ),
         .target(
             name: "libucd",
-            sources: ["src"],  // Adjust path as needed
             cSettings: []
         ),
         .target(
@@ -32,7 +30,6 @@ let package = Package(
             name: "libespeak-ng",
             dependencies: ["libsonic", "libucd"],
             exclude: ["_repo"],
-            sources: ["src"],  // Adjust path as needed
             publicHeadersPath: "include",
             cSettings: [
                 .headerSearchPath("."),
