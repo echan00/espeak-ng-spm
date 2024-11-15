@@ -8,30 +8,20 @@ let package = Package(
         .library(name: "libespeak-ng", targets: ["libespeak-ng"]),
         .library(name: "espeak-ng-data", targets: ["data"]),
     ],
-    dependencies: [
-        .package(url: "https://github.com/echan00/espeak-ng.git", branch: "main")
-    ],
     targets: [
         .target(
             name: "libsonic",
-            dependencies: [
-                .product(name: "espeak-ng", package: "espeak-ng")
-            ],
             exclude: ["_repo"],
+            sources: ["src"],  // Adjust path as needed
             cSettings: []
         ),
         .target(
             name: "libucd",
-            dependencies: [
-                .product(name: "espeak-ng", package: "espeak-ng")
-            ],
+            sources: ["src"],  // Adjust path as needed
             cSettings: []
         ),
         .target(
             name: "data",
-            dependencies: [
-                .product(name: "espeak-ng", package: "espeak-ng")
-            ],
             resources: [
                 .copy("espeak-ng-data"),
                 .copy("phsource"),
@@ -40,16 +30,13 @@ let package = Package(
         ),
         .target(
             name: "libespeak-ng",
-            dependencies: [
-                .product(name: "espeak-ng", package: "espeak-ng"),
-                "libsonic",
-                "libucd"
-            ],
+            dependencies: ["libsonic", "libucd"],
             exclude: ["_repo"],
+            sources: ["src"],  // Adjust path as needed
             publicHeadersPath: "include",
             cSettings: [
                 .headerSearchPath("."),
-                .headerSearchPath("_repo/src/include"),
+                .headerSearchPath("src/include"),  // Adjusted from _repo/src/include
                 .define("ESPEAK_NG_API", to: ""),
                 .define("N_PATH_HOME", to: "1024"),
             ]
