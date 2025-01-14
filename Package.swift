@@ -8,6 +8,9 @@ let package = Package(
     .library(name: "libespeak-ng", targets: ["libespeak-ng"]),
     .library(name: "espeak-ng-data", targets: ["data"]),
   ],
+  dependencies: [
+      .package(url: "https://github.com/echan00/espeak-ng.git", branch: "main")
+  ],  
   targets: [
     .target(
       name: "libsonic",
